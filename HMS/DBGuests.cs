@@ -13,7 +13,7 @@ namespace HMS
     {
         public static MySqlConnection GetConnection()
         {
-            string sql = "datasource=localhost; port=3306; username=root; password=admin11; database=hotelguest";
+            string sql = "datasource=localhost; port=3306; username=root; password=*******; database=hotelguest";
 
             MySqlConnection conn = new MySqlConnection(sql);
             try
