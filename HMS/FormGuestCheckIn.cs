@@ -15,7 +15,7 @@ namespace HMS
         private readonly FormGuestInfo _parent;
 
         public string  _fName, _lName, _PID;
-        public int _roomID, _id;
+        public int _roomID, _id, _nightsNo;
         
         public FormGuestCheckIn(FormGuestInfo parent)
         {
@@ -31,6 +31,7 @@ namespace HMS
             lName.Text = _lName;
             PID.Text = _PID;
             roomNo.Text = _roomID.ToString();
+            nightsNo.Text = _nightsNo.ToString();
         }
 
         private void roomNo_Enter(object sender, EventArgs e)
@@ -78,7 +79,11 @@ namespace HMS
                 Close();
             }
             _parent.displayGuests();
+            
         }
 
     }
 }
+
+// Nov column so Duration zacuvuva kolku dena isto i end datum koj e start + duration i vo toj 
+//period rooms.occupied=1 istoto duration se koristi i za presmetka na obvrska za uplata vo sporedba so rooms.type

@@ -37,40 +37,23 @@ namespace HMS
 
         public void ShowRooms()
         {
-            DBRooms.read();
+            DBRooms.showOccupied();
         }
 
         private void FormRoomInfo_Shown(object sender, EventArgs e)
         {
-            string sql = "SELECT * FROM rooms;";
-
-            MySqlConnection conn = GetConnection();
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            string[] roomsL = new string[] { "r1", "r2", "r3", "r4", "r5", "r11", "r12", "r13", "r14", "r15", };
-            List<string> test = new List<string>();
-
-            while (reader.Read())
-            {
-                //String res = reader.GetString(0);
-                String res1 = reader.GetString(1);
-
-                test.Add(res1);
-            }
-
+            string[] roomsL = new string[] { "r1", "r2", "r3", "r4", "r5", "r11", "r12", "r13", "r14", "r15" };
+            List<string> ocpRooms = DBRooms.showOccupied();
 
             for (int i = 0; i < 10; i++)
             {
                 Panel p = this.Controls.Find(roomsL[i], true).FirstOrDefault() as Panel;
-                if (test[i] == "True")
+                if (ocpRooms[i] == "True")
                 {
-                    // MessageBox.Show("True");
                     p.BackColor = Color.Red;
                 }
                 else
                 {
-                    //MessageBox.Show("False");
                     p.BackColor = Color.Green;
 
                 }
@@ -79,5 +62,12 @@ namespace HMS
 
         }
 
+        private void dicTst_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, string> chk = DBRooms.showRoomType();
+
+                MessageBox.Show(chk["101"]);
+            
+        }
     }
 }

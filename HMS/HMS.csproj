@@ -92,6 +92,12 @@
     <Compile Include="FormGuestCheckIn.Designer.cs">
       <DependentUpon>FormGuestCheckIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormGuestCheckOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGuestCheckOut.Designer.cs">
+      <DependentUpon>FormGuestCheckOut.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormGuestInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,9 @@
     <Compile Include="Rooms.cs" />
     <EmbeddedResource Include="FormGuestCheckIn.resx">
       <DependentUpon>FormGuestCheckIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGuestCheckOut.resx">
+      <DependentUpon>FormGuestCheckOut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormGuestInfo.resx">
       <DependentUpon>FormGuestInfo.cs</DependentUpon>

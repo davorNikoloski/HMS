@@ -33,6 +33,7 @@ namespace HMS
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridViewGuest = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,15 +41,14 @@ namespace HMS
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnCheckIn = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGuest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGuest)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -99,6 +99,17 @@ namespace HMS
             this.panel2.Size = new System.Drawing.Size(766, 341);
             this.panel2.TabIndex = 0;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = global::HMS.Properties.Resources.searchI;
+            this.pictureBox1.Location = new System.Drawing.Point(712, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(42, 45);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // dataGridViewGuest
             // 
             this.dataGridViewGuest.AllowUserToAddRows = false;
@@ -119,8 +130,8 @@ namespace HMS
             this.Column7,
             this.Column4,
             this.Column8,
-            this.Column5,
-            this.Column6});
+            this.Column10,
+            this.Column11});
             this.dataGridViewGuest.Location = new System.Drawing.Point(34, 72);
             this.dataGridViewGuest.MultiSelect = false;
             this.dataGridViewGuest.Name = "dataGridViewGuest";
@@ -132,7 +143,7 @@ namespace HMS
             this.dataGridViewGuest.ShowEditingIcon = false;
             this.dataGridViewGuest.Size = new System.Drawing.Size(702, 245);
             this.dataGridViewGuest.TabIndex = 0;
-            this.dataGridViewGuest.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewGuest_CellClick);
+            this.dataGridViewGuest.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewGuest_CellClick_1);
             // 
             // Column1
             // 
@@ -182,25 +193,25 @@ namespace HMS
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
             // 
-            // Column5
+            // Column10
             // 
-            this.Column5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Column5.HeaderText = "";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Text = "Edit";
-            this.Column5.UseColumnTextForButtonValue = true;
+            this.Column10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Column10.HeaderText = "";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Text = "Edit";
+            this.Column10.UseColumnTextForButtonValue = true;
             // 
-            // Column6
+            // Column11
             // 
-            this.Column6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Column6.HeaderText = "";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Text = "Check Out";
-            this.Column6.UseColumnTextForButtonValue = true;
+            this.Column11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Column11.HeaderText = "";
+            this.Column11.MinimumWidth = 6;
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            this.Column11.Text = "Check Out";
+            this.Column11.UseColumnTextForButtonValue = true;
             // 
             // txtSearch
             // 
@@ -225,16 +236,6 @@ namespace HMS
             this.btnCheckIn.UseVisualStyleBackColor = false;
             this.btnCheckIn.Click += new System.EventHandler(this.btnCheckIn_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::HMS.Properties.Resources.searchI;
-            this.pictureBox1.Location = new System.Drawing.Point(712, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(42, 45);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
             // FormGuestInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -251,8 +252,8 @@ namespace HMS
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGuest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGuest)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -266,15 +267,15 @@ namespace HMS
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnCheckIn;
         private System.Windows.Forms.DataGridView dataGridViewGuest;
+        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewButtonColumn Column5;
-        private System.Windows.Forms.DataGridViewButtonColumn Column6;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataGridViewButtonColumn Column10;
+        private System.Windows.Forms.DataGridViewButtonColumn Column11;
     }
 }
 

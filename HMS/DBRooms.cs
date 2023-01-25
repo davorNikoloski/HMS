@@ -13,7 +13,7 @@ namespace HMS
     {
         public static MySqlConnection GetConnection()
         {
-            string sql = "datasource=localhost; port=3306; username=root; password=*******; database=hotelguest";
+            string sql = "datasource=localhost; port=3306; username=root; password=admin11; database=hotelguest";
 
             MySqlConnection conn = new MySqlConnection(sql);
             try
@@ -43,21 +43,44 @@ namespace HMS
             conn.Close();
         }
 
-        public static void read()
+        public static List<string> showOccupied()
         {
             string sql = "SELECT * FROM rooms;";
 
             MySqlConnection conn = GetConnection();
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
-            string[] stringArray = new string[10];
+
+            List<string> roomOcp = new List<string>();
+
             while (reader.Read())
             {
-                int i = 0;
-                String res = reader.GetString(1);
-                stringArray[i] = res;
-                MessageBox.Show(stringArray[i]);
+                //String res = reader.GetString(0);
+                String rOcp = reader.GetString(1);
+
+                roomOcp.Add(rOcp);
             }
+            return roomOcp;
+        }
+
+        public static Dictionary<string,string> showRoomType()
+        {
+            string sql = "SELECT * FROM rooms;";
+
+            MySqlConnection conn = GetConnection();
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            Dictionary<string, string> kvpRnoRtyp = new Dictionary<string, string>();
+
+            while (reader.Read())
+            {
+                string roomNum = reader.GetString(0);
+                string roomTyp = reader.GetString(2);
+                kvpRnoRtyp.Add(roomNum,roomTyp);
+            }
+            
+            return kvpRnoRtyp;
         }
     }
 }

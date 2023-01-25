@@ -13,7 +13,7 @@ namespace HMS
     {
         public static MySqlConnection GetConnection()
         {
-            string sql = "datasource=localhost; port=3306; username=root; password=*******; database=hotelguest";
+            string sql = "datasource=localhost; port=3306; username=root; password=admin11; database=hotelguest";
 
             MySqlConnection conn = new MySqlConnection(sql);
             try
@@ -141,3 +141,6 @@ namespace HMS
 
     }
 }
+
+// Nov column so Duration zacuvuva kolku dena isto i end datum koj e start + duration i vo toj 
+//period rooms.occupied=1 istoto duration se koristi i za presmetka na obvrska za uplata vo sporedba so rooms.type

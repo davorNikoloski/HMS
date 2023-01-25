@@ -41,6 +41,8 @@ namespace HMS
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.nightsNo = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +74,8 @@ namespace HMS
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.nightsNo);
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.btnAdd);
             this.panel2.Controls.Add(this.roomNo);
             this.panel2.Controls.Add(this.label5);
@@ -91,7 +95,7 @@ namespace HMS
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(136)))), ((int)(((byte)(100)))));
             this.btnAdd.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(38, 371);
+            this.btnAdd.Location = new System.Drawing.Point(38, 432);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(110, 45);
             this.btnAdd.TabIndex = 0;
@@ -173,6 +177,24 @@ namespace HMS
             this.label2.TabIndex = 1;
             this.label2.Text = "Frist Name:";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Variable Display", 10.8F);
+            this.label1.Location = new System.Drawing.Point(33, 352);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(163, 26);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Number of nights:";
+            // 
+            // nightsNo
+            // 
+            this.nightsNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nightsNo.Location = new System.Drawing.Point(38, 381);
+            this.nightsNo.Name = "nightsNo";
+            this.nightsNo.Size = new System.Drawing.Size(202, 22);
+            this.nightsNo.TabIndex = 8;
+            // 
             // FormGuestCheckIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -207,5 +229,7 @@ namespace HMS
         private System.Windows.Forms.ComboBox roomNo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.TextBox nightsNo;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -334,7 +334,7 @@ namespace HMS
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "FormRoomInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormRoomInfo";
+            this.Text = "Rooms";
             this.Shown += new System.EventHandler(this.FormRoomInfo_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
