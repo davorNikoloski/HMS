@@ -29,12 +29,14 @@ namespace HMS
 
         public static void AddGuest(Guests guest)
         {
-            string sqlc = "INSERT INTO guests (roomID,fName, lName, PID) VALUES (@RoomNo,@GuestsfName,@GuestslName,@GuestsPID)";
+            string sqlc = "INSERT INTO guests (roomID,fName, lName, PID, duration) VALUES (@RoomNo,@GuestsfName,@GuestslName,@GuestsPID,@GuestsNightsNo)";
             string sqlR = "UPDATE rooms INNER JOIN guests ON guests.roomID = rooms.ID SET rooms.occupied = 1;";
-            string test = "INSERT INTO guests (roomID, fName, lName, PID) VALUES(" + guest.RoomNo + ",'" + guest.FName + "','" + guest.LName + "','" + guest.P_ID + "');";
+            string sqlChckOut = "UPDATE guests SET checkOutTime = DATE_ADD(checkInTime, INTERVAL duration DAY); ";
+
             MySqlConnection conn = GetConnection();
             MySqlCommand cmd = new MySqlCommand(sqlc, conn);
             MySqlCommand cmdR = new MySqlCommand(sqlR, conn);
+            MySqlCommand cmdChckOut = new MySqlCommand(sqlChckOut, conn);
 
             cmd.CommandType = CommandType.Text;
             //cmdR.CommandText = sqlR;
@@ -43,11 +45,14 @@ namespace HMS
             cmd.Parameters.Add("@GuestsfName", MySqlDbType.VarChar).Value = guest.FName;
             cmd.Parameters.Add("@GuestslName", MySqlDbType.VarChar).Value = guest.LName;
             cmd.Parameters.Add("@GuestsPID", MySqlDbType.VarChar).Value = guest.P_ID;
-            
+            cmd.Parameters.Add("@GuestsNightsNo", MySqlDbType.Int32).Value = guest.NightsNo;
+
             try
             {
                 cmd.ExecuteNonQuery();
                 cmdR.ExecuteNonQuery();
+                cmdChckOut.ExecuteNonQuery();
+
                 MessageBox.Show("Guest added Successfully : \n", "Info" , MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
@@ -61,14 +66,16 @@ namespace HMS
 
         public static void UpdateGuest(Guests guest, int id)
         {
-            string sqlc = "UPDATE guests SET roomID = @RoomNo, fName = @GuestsfName, lName = @GuestslName, PID = @GuestsPID WHERE id = @guestID;";
+            string sqlc = "UPDATE guests SET roomID = @RoomNo, fName = @GuestsfName, lName = @GuestslName, PID = @GuestsPID, duration=@GuestsNightsNo WHERE id = @guestID;";
             string sqlR = "UPDATE rooms INNER JOIN guests ON guests.roomID = rooms.ID SET rooms.occupied = 1;";
             string sqlRu = "UPDATE rooms INNER JOIN guests ON guests.roomID = rooms.id SET occupied=0 WHERE guests.id = @guestID";
+            string sqlChckOut = "UPDATE guests SET checkOutTime = DATE_ADD(checkInTime, INTERVAL duration DAY); ";
 
             MySqlConnection conn = GetConnection();
             MySqlCommand cmd = new MySqlCommand(sqlc, conn);
             MySqlCommand cmdR = new MySqlCommand(sqlR, conn);
             MySqlCommand cmdRu = new MySqlCommand(sqlRu, conn);
+            MySqlCommand cmdChckOut = new MySqlCommand(sqlChckOut, conn);
 
             cmd.CommandType = CommandType.Text;
             cmdRu.CommandType = CommandType.Text;
@@ -80,12 +87,15 @@ namespace HMS
             cmd.Parameters.Add("@GuestsfName", MySqlDbType.VarChar).Value = guest.FName;
             cmd.Parameters.Add("@GuestslName", MySqlDbType.VarChar).Value = guest.LName;
             cmd.Parameters.Add("@GuestsPID", MySqlDbType.VarChar).Value = guest.P_ID;
+            cmd.Parameters.Add("@GuestsNightsNo", MySqlDbType.Int32).Value = guest.NightsNo;
+
             try
             {
                 cmdRu.ExecuteNonQuery();
                 cmd.ExecuteNonQuery();
                 cmdR.ExecuteNonQuery();
-                
+                cmdChckOut.ExecuteNonQuery();
+
                 MessageBox.Show("Guest updated Successfully : \n", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
@@ -138,9 +148,25 @@ namespace HMS
             dgv.DataSource = dtb;
             conn.Close();
         }
+        public static List<string> duration()
+        {
+            string sql = "SELECT duration FROM guests;";
 
+            MySqlConnection conn = GetConnection();
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            List<string> dur = new List<string>();
+
+            while (reader.Read())
+            {
+                //String res = reader.GetString(0);
+                String nightsDur = reader.GetString(0);
+
+                dur.Add(nightsDur);
+            }
+            return dur;
+            
+        }
     }
 }
-
-// Nov column so Duration zacuvuva kolku dena isto i end datum koj e start + duration i vo toj 
-//period rooms.occupied=1 istoto duration se koristi i za presmetka na obvrska za uplata vo sporedba so rooms.type

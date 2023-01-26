@@ -34,6 +34,31 @@ namespace HMS
             DBGuests.DisplayAndSearch("SELECT id, roomID, fName, lName, PID, checkInTime FROM guests;", dataGridViewGuest);
         }
 
+        public int price(string rNo, int duration)
+        {
+            int cost = 1;
+            Dictionary<string, string> type = DBRooms.showRoomType();
+
+            if(type[rNo] == "Single")
+            {
+                cost = 100 * duration; 
+            }
+            else if(type[rNo] == "Deluxe")
+            {
+                cost = 140 * duration;
+            }
+            else if (type[rNo] == "Suite")
+            {
+                cost = 220 * duration;
+            }
+            else if (type[rNo] == "Penthouse")
+            {
+                cost = 280 * duration;
+            }
+            return cost;
+
+        }
+
         private void btnCheckIn_Click(object sender, EventArgs e)
         {
             formGuest.clear();
@@ -53,6 +78,8 @@ namespace HMS
 
         private void dataGridViewGuest_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
+            List<string> duration = DBGuests.duration();
+            int rowIndex = dataGridViewGuest.Rows[e.RowIndex].Index;
             if (e.ColumnIndex == 0)
             {
                 
@@ -62,28 +89,34 @@ namespace HMS
                 formGuest._fName = dataGridViewGuest.Rows[e.RowIndex].Cells[4].Value.ToString();
                 formGuest._lName = dataGridViewGuest.Rows[e.RowIndex].Cells[5].Value.ToString();
                 formGuest._PID = dataGridViewGuest.Rows[e.RowIndex].Cells[6].Value.ToString();
-                //MessageBox.Show(formGuest._roomID.ToString());
+                formGuest._nightsNo = Convert.ToInt32(duration[rowIndex]);
+                //MessageBox.Show(duration[rowIndex]);
                 formGuest.UpdateGuestInfo();
                 formGuest.ShowDialog();
-               
+                
                 return;
             }
             if (e.ColumnIndex == 1)
             {
+                string roomNo = dataGridViewGuest.Rows[e.RowIndex].Cells[3].Value.ToString();
+                int dur = Convert.ToInt32(duration[rowIndex]);
+                int cost = price(roomNo, dur);
+
+
                 if (MessageBox.Show("Are you sure you want to check out this guest?", "Information", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    //formChckOut.ShowDialog();
-                    DBGuests.DeleteGuest(dataGridViewGuest.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    if (MessageBox.Show("The guest stayed for: "+dur+" nights and the cost is: "+cost, "Information", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        //formChckOut.ShowDialog();
+                        DBGuests.DeleteGuest(dataGridViewGuest.Rows[e.RowIndex].Cells[2].Value.ToString());
 
-                    displayGuests();
+                        displayGuests();
+                    }
                 }
                 return;
             }
         }
-
-        
     }
 }
-// za delete odi na formChckOut.ShowDialog(); kaj so cheknuvame da go delete i ni se prikazuva dolg za uplata
 
 //==========ONLINE SCHEDULE

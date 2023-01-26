@@ -12,14 +12,17 @@ namespace HMS
         public String FName { get; set; }
         public String LName { get; set; }
         public String P_ID { get; set; }
-     
+        public int NightsNo { get; set; }
 
-        public Guests(int roomNo, String fName, String lName, String PID)
+
+
+        public Guests(int roomNo, String fName, String lName, String PID, int nightsNo)
         {
             RoomNo = roomNo;
             FName = fName;
             LName = lName;
             P_ID = PID;
+            NightsNo = nightsNo;
         }
 
     }

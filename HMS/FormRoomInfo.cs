@@ -61,13 +61,5 @@ namespace HMS
             }
 
         }
-
-        private void dicTst_Click(object sender, EventArgs e)
-        {
-            Dictionary<string, string> chk = DBRooms.showRoomType();
-
-                MessageBox.Show(chk["101"]);
-            
-        }
     }
 }

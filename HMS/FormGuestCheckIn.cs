@@ -41,7 +41,7 @@ namespace HMS
 
         public void clear()
         {
-            fName.Text = lName.Text = PID.Text  = string.Empty;
+            fName.Text = lName.Text = PID.Text = nightsNo.Text = string.Empty;
             roomNo.Text = "Choose Room";
             roomNo.SelectedItem = null;
             
@@ -63,7 +63,7 @@ namespace HMS
                 }
                 else
                 {
-                    Guests guest = new Guests(Convert.ToInt32(roomNo.Text), fName.Text.Trim(), lName.Text.Trim(), PID.Text.Trim());
+                    Guests guest = new Guests(Convert.ToInt32(roomNo.Text), fName.Text.Trim(), lName.Text.Trim(), PID.Text.Trim(),Convert.ToInt32(nightsNo.Text));
                     DBGuests.AddGuest(guest);
                     clear();
                     Close();
@@ -73,7 +73,7 @@ namespace HMS
             }
             if (btnAdd.Text == "Update")
             {
-                Guests guest = new Guests(Convert.ToInt32(roomNo.Text), fName.Text.Trim(), lName.Text.Trim(), PID.Text.Trim());
+                Guests guest = new Guests(Convert.ToInt32(roomNo.Text), fName.Text.Trim(), lName.Text.Trim(), PID.Text.Trim(), Convert.ToInt32(nightsNo.Text));
                 DBGuests.UpdateGuest(guest,_id);
                 clear();
                 Close();
@@ -84,6 +84,3 @@ namespace HMS
 
     }
 }
-
-// Nov column so Duration zacuvuva kolku dena isto i end datum koj e start + duration i vo toj 
-//period rooms.occupied=1 istoto duration se koristi i za presmetka na obvrska za uplata vo sporedba so rooms.type
